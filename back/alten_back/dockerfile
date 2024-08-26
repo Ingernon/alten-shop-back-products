@@ -1,0 +1,28 @@
+# FROM python:3.4
+
+# WORKDIR /usr/src/app
+# COPY requirements.txt ./
+# RUN pip3 install -r requirements.txt
+# COPY . .
+
+# EXPOSE 3000
+
+# # RUN python ./manage.py makemigration
+# # RUN python ./manage.py migrate
+# # RUN python ./manage.py runserver 0.0.0.0:3000
+# CMD ["python3", "manage.py", "runserver", "0.0.0.0:3000"]
+
+
+FROM python:3.11
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:3000"]
